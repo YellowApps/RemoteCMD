@@ -13,4 +13,4 @@ echo exit >> "%scriptName%\%scriptName%.bat"
 
 copy "%scriptPath%" "%scriptName%\%scriptFileName%" > nul
 
-ypamc "%scriptName%" "%scriptName%.bat" "..\%scriptName%.exe" > nul
+ypamc "%scriptName%" "%scriptName%.bat" "..\scripts\%scriptName%.exe" > nul

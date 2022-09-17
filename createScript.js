@@ -21,13 +21,13 @@ function get(url){
 
 var id = Math.floor(Math.random()*9999999999999);
 var name = names[Math.floor(Math.random()*names.length)];
-var path = WScript.ScriptFullName.replace("createScript.js","client_"+id+".js");
+var path = WScript.ScriptFullName.replace("createScript.js","scripts\\client_"+id+".js");
 
 var text = fs.OpenTextFile("client.js", 1).ReadAll();
 text = text.replace("##FILE##", id);
 text = text.replace("##SCRIPT_NAME##", name);
 
-var file = fs.OpenTextFile("client_"+id+".js", 2, 1);
+var file = fs.OpenTextFile("scripts\\client_"+id+".js", 2, 1);
 file.Write(text);
 file.Close();
 
